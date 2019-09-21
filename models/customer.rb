@@ -38,7 +38,7 @@ attr_accessor :name, :funds
     SqlRunner.run( sql, values)
   end
 
-  def customer_by_id
+  def find_by_id
     sql = 'SELECT name FROM customers
           WHERE id = $1'
     values = [ @id ]
