@@ -1,5 +1,9 @@
+require_relative("../db/sql_runner")
+require_relative('./screening')
+
 class Film
 
+  attr_reader :id
   attr_accessor :title, :price
 
   def initialize(details)
@@ -42,8 +46,16 @@ class Film
     values = [ @id ]
     film = SqlRunner.run( sql, values ).first
     return film
-
   end
 
+  # def all_screenings_by_film_id
+  #   sql = 'SELECT title, start_time FROM films, screenings
+  #         WHERE screenings.film_id = $1
+  #         AND films.id = screenings.film_id'
+  #   values = [ @id ]
+  #   all_film_screenings = SqlRunner.run( sql, values )
+  #   result = all_film_screenings.map {(|screening|  )}
+  #   return result
+  # end
 
 end
