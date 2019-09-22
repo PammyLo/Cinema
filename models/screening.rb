@@ -51,6 +51,26 @@ class Screening
     return tickets_available
   end
 
+  def Screening.most_popular_screening_by_film(film)
+    sql = 'SELECT title, start_time AS Most_popular_screening, COUNT(tickets.id) AS tickets_sold
+          FROM films, screenings, tickets
+          WHERE films.id = screenings.film_id
+          AND screenings.id = tickets.screening_id
+          AND films.id = $1
+          GROUP BY title, start_time
+          ORDER BY count(tickets.id) DESC
+          LIMIT 1'
+    values = [ film.id ]
+    most_popular_screening = SqlRunner.run( sql, values )
+    return most_popular_screening.map { |scr| puts (scr)}
+  end
 
+  def Screening.screenings_table
+    sql = 'SELECT title, start_time AS screening
+          FROM films, screenings
+          WHERE films.id = screenings.film_id'
+    screenings_table = SqlRunner.run( sql )
+    return screenings_table.map { |screenings| puts(screenings)}
+  end
 
 end

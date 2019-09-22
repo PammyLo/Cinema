@@ -20,7 +20,7 @@ customer2.save()
 customer3.save()
 customer4.save()
 
-customer4.delete
+# customer4.delete
 
 customer1.funds = 5
 customer1.update
@@ -50,14 +50,16 @@ screening2 = Screening.new({'start_time' => '2019 Sept 28, 3:00 PM', 'film_id' =
 screening3 = Screening.new({'start_time' => '2019 Sept 26, 11:00 PM', 'film_id' => film3.id, 'total_tickets' => 0})
 screening4 = Screening.new({'start_time' => '2019 Sept 28, 9:00 PM', 'film_id' => film1.id, 'total_tickets' => 30})
 screening5 = Screening.new({'start_time' => '2019 Sept 28, 2:00 PM', 'film_id' => film2.id, 'total_tickets' => 20})
+screening6 = Screening.new({'start_time' => '2019 Sept 28, 4:00 PM', 'film_id' => film2.id, 'total_tickets' => 20})
 
 screening1.save
 screening2.save
 screening3.save
 screening4.save
 screening5.save
+screening6.save
 
-screening5.delete
+# screening5.delete
 
 screening1.total_tickets = 40
 screening1.update
@@ -70,6 +72,11 @@ ticket3 = Ticket.new({'customer_id' => customer3.id, 'screening_id' => screening
 ticket4 = Ticket.new({'customer_id' => customer3.id, 'screening_id' => screening2.id})
 ticket5 = Ticket.new({'customer_id' => customer3.id, 'screening_id' => screening3.id})
 ticket6 = Ticket.new({'customer_id' => customer2.id, 'screening_id' => screening2.id})
+ticket7 = Ticket.new({'customer_id' => customer3.id, 'screening_id' => screening4.id})
+ticket8 = Ticket.new({'customer_id' => customer2.id, 'screening_id' => screening6.id})
+ticket9 = Ticket.new({'customer_id' => customer3.id, 'screening_id' => screening6.id})
+ticket10 = Ticket.new({'customer_id' => customer2.id, 'screening_id' => screening6.id})
+ticket11 = Ticket.new({'customer_id' => customer4.id, 'screening_id' => screening6.id})
 
 # ticket1.save
 # ticket2.save
@@ -83,11 +90,24 @@ ticket6 = Ticket.new({'customer_id' => customer2.id, 'screening_id' => screening
 # ticket1.find_customer_name
 # ticket1.tickets_available?
 
-# binding.pry
-
 ticket1.sell
 ticket2.sell
 ticket3.sell
 ticket4.sell
 ticket5.sell
 ticket6.sell
+ticket7.sell
+ticket8.sell
+ticket9.sell
+ticket10.sell
+ticket11.sell
+
+customer2.number_by_customer
+customer3.films_by_customer
+
+Screening.most_popular_screening_by_film(film2)
+Screening.screenings_table
+Ticket.number_by_screening(screening1)
+Ticket.number_by_film(film2)
+
+# binding.pry

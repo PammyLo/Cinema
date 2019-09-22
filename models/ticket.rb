@@ -57,11 +57,12 @@ class Ticket
     sql = 'SELECT total_tickets FROM screenings, tickets
           WHERE screenings.id = tickets.screening_id
           AND screening_id = $1'
-      values = [ @screening_id ]
-      tickets_available = SqlRunner.run( sql, values ).first
-      return true if tickets_available['total_tickets'].to_i > 0
-    end
+    values = [ @screening_id ]
+    tickets_available = SqlRunner.run( sql, values ).first
+    return true if tickets_available['total_tickets'].to_i > 0
+  end
 
+#  the sell ticket function uses all 6 functions above to run
   def sell
     self.save
     customer_name = self.find_customer_name
@@ -81,6 +82,49 @@ class Ticket
   def Ticket.delete_all
     sql = 'DELETE FROM tickets'
     SqlRunner.run( sql )
+  end
+
+  def Ticket.number_by_customer(customer)
+    sql = "SELECT id FROM tickets
+          WHERE customer_id = $1"
+    values = [ customer.id ]
+    customer_tickets = SqlRunner.run( sql, values )
+    return customer_tickets.count
+  end
+
+  def Ticket.number_by_screening(screening)
+    sql = 'SELECT id FROM tickets
+          WHERE screening_id = $1'
+    values = [ screening.id ]
+    viewers = SqlRunner.run( sql, values )
+    return viewers.count
+  end
+
+  def Ticket.number_by_film(film)
+    sql = 'SELECT count(tickets.id) FROM tickets, screenings
+          WHERE tickets.screening_id = screenings.id
+          AND film_id = $1'
+    values = [ film.id ]
+    viewers = SqlRunner.run( sql, values ).first
+    return viewers['count'].to_i
+  end
+
+  #   # ANOTHER VERSION WHERE THE COUNT IS EXECUTED BY SQL QUERY:
+  #
+  # def Ticket.number_by_screening(screening)
+  #   sql = 'SELECT count(id) FROM tickets
+  #         WHERE screening_id = $1'
+  #   values = [ screening.id ]
+  #   viewers = SqlRunner.run( sql, values ).first
+  #   return viewers['count'].to_i
+  # end
+
+
+
+#find most popular screening for particular film
+#find total tickets sold for screenings where films
+  def method_name
+
   end
 
 end

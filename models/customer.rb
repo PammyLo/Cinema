@@ -56,4 +56,23 @@ attr_accessor :name, :funds
     return customer['funds'].to_i
   end
 
+  def number_by_customer
+    sql = "SELECT id FROM tickets
+          WHERE customer_id = $1"
+    values = [ @id ]
+    customer_tickets = SqlRunner.run( sql, values )
+    return customer_tickets.count
+  end
+
+  def films_by_customer
+    sql = "SELECT title, start_time FROM films, screenings, tickets
+          WHERE films.id = screenings.film_id
+          AND screenings.id = tickets.screening_id
+          AND customer_id = $1"
+    values = [ @id ]
+    customer_films = SqlRunner.run( sql, values )
+    return customer_films.map { |films| puts(films) }
+  end
+
+
 end
