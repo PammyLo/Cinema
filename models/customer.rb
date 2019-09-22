@@ -1,4 +1,5 @@
 require_relative("../db/sql_runner")
+require_relative('./ticket')
 
 class Customer
 
@@ -47,5 +48,17 @@ attr_accessor :name, :funds
     return customer
   end
 
+  def find_funds
+    sql = 'SELECT funds FROM customers
+          WHERE id = $1'
+    values = [ @id ]
+    customer = SqlRunner.run( sql, values ).first
+    return customer['funds'].to_i
+  end
+
+  # def pay
+  #   return @funds -= ticket1. if @wallet >= amount
+  #   return "Sorry, not enough cash to get in.."
+  # end
 
 end

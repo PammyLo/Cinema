@@ -5,6 +5,7 @@ require_relative('./models/screening.rb')
 
 require 'pry'
 
+Ticket.delete_all
 Screening.delete_all
 Customer.delete_all
 Film.delete_all
@@ -21,10 +22,12 @@ customer4.save()
 
 customer4.delete
 
-customer1.funds = 75
+customer1.funds = 5
 customer1.update
 
 customer2.find_by_id
+customer1.find_funds
+
 
 film1 = Film.new({'title' => 'Star_Wars', 'price' => 10})
 film2 = Film.new({'title' => 'Frozen', 'price' => 8})
@@ -68,12 +71,16 @@ ticket4 = Ticket.new({'customer_id' => customer3.id, 'screening_id' => screening
 ticket5 = Ticket.new({'customer_id' => customer3.id, 'screening_id' => screening3.id})
 ticket6 = Ticket.new({'customer_id' => customer2.id, 'screening_id' => screening2.id})
 
-ticket1.save #reserve
-ticket2.save
-ticket3.save
-ticket4.save
-ticket5.save
-ticket6.save
+# ticket1.save
+# ticket2.save
+# ticket3.save
+# ticket4.save
+# ticket5.save
+# ticket6.save
+#
+# ticket1.find_price
+# ticket1.find_customer_funds
+# ticket1.find_customer_name
 
 ticket1.sell
 ticket2.sell
