@@ -56,9 +56,4 @@ attr_accessor :name, :funds
     return customer['funds'].to_i
   end
 
-  # def pay
-  #   return @funds -= ticket1. if @wallet >= amount
-  #   return "Sorry, not enough cash to get in.."
-  # end
-
 end

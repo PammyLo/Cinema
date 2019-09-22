@@ -53,12 +53,21 @@ class Ticket
     return customer['name']
   end
 
+  def tickets_available?
+    sql = 'SELECT total_tickets FROM screenings, tickets
+          WHERE screenings.id = tickets.screening_id
+          AND screening_id = $1'
+      values = [ @screening_id ]
+      tickets_available = SqlRunner.run( sql, values ).first
+      return true if tickets_available['total_tickets'].to_i > 0
+    end
+
   def sell
     self.save
     customer_name = self.find_customer_name
     customer_funds = self.find_customer_funds
     customer_funds -= self.find_price
-    if customer_funds < 0
+    if customer_funds < 0 || !self.tickets_available?
       self.delete
       return
     end

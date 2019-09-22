@@ -48,6 +48,7 @@ class Film
     return film
   end
 
+
   # def all_screenings_by_film_id
   #   sql = 'SELECT title, start_time FROM films, screenings
   #         WHERE screenings.film_id = $1

@@ -11,9 +11,9 @@ Customer.delete_all
 Film.delete_all
 
 customer1 = Customer.new({'name' => 'Jo Blog', 'funds' => '50'})
-customer2 = Customer.new({'name' => 'Blair Jones', 'funds' => '80'})
-customer3 = Customer.new({'name' => 'Karen Smith', 'funds' => '60'})
-customer4 = Customer.new({'name' => 'George Fallows', 'funds' => '48'})
+customer2 = Customer.new({'name' => 'Blair Jones', 'funds' => '50'})
+customer3 = Customer.new({'name' => 'Karen Smith', 'funds' => '50'})
+customer4 = Customer.new({'name' => 'George Fallows', 'funds' => '50'})
 
 customer1.save()
 customer2.save()
@@ -47,7 +47,7 @@ film2.find_by_id
 
 screening1 = Screening.new({'start_time' => '2019 Sept 26, 9:00 PM', 'film_id' => film1.id, 'total_tickets' => 30})
 screening2 = Screening.new({'start_time' => '2019 Sept 28, 3:00 PM', 'film_id' => film2.id, 'total_tickets' => 20})
-screening3 = Screening.new({'start_time' => '2019 Sept 26, 11:00 PM', 'film_id' => film3.id, 'total_tickets' => 20})
+screening3 = Screening.new({'start_time' => '2019 Sept 26, 11:00 PM', 'film_id' => film3.id, 'total_tickets' => 0})
 screening4 = Screening.new({'start_time' => '2019 Sept 28, 9:00 PM', 'film_id' => film1.id, 'total_tickets' => 30})
 screening5 = Screening.new({'start_time' => '2019 Sept 28, 2:00 PM', 'film_id' => film2.id, 'total_tickets' => 20})
 
@@ -81,6 +81,9 @@ ticket6 = Ticket.new({'customer_id' => customer2.id, 'screening_id' => screening
 # ticket1.find_price
 # ticket1.find_customer_funds
 # ticket1.find_customer_name
+# ticket1.tickets_available?
+
+# binding.pry
 
 ticket1.sell
 ticket2.sell
@@ -88,8 +91,3 @@ ticket3.sell
 ticket4.sell
 ticket5.sell
 ticket6.sell
-
-
-
-
-# binding.pry

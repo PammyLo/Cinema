@@ -48,7 +48,9 @@ class Screening
           WHERE id = $1'
     values = [ @id ]
     tickets_available = SqlRunner.run( sql, values ).first
-    return tickets_available    
+    return tickets_available
   end
+
+
 
 end
