@@ -61,16 +61,15 @@ class Screening
           ORDER BY count(tickets.id) DESC
           LIMIT 1'
     values = [ film.id ]
-    most_popular_screening = SqlRunner.run( sql, values )
-    return most_popular_screening.map { |scr| puts (scr)}
+    return SqlRunner.run( sql, values )
   end
 
-  def Screening.screenings_table
+  def Screening.films_and_screenings
     sql = 'SELECT title, start_time AS screening
           FROM films, screenings
-          WHERE films.id = screenings.film_id'
-    screenings_table = SqlRunner.run( sql )
-    return screenings_table.map { |screenings| puts(screenings)}
+          WHERE films.id = screenings.film_id
+          ORDER BY title ASC'
+    return SqlRunner.run( sql )
   end
 
 end

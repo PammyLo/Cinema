@@ -51,6 +51,7 @@ screening3 = Screening.new({'start_time' => '2019 Sept 26, 11:00 PM', 'film_id' 
 screening4 = Screening.new({'start_time' => '2019 Sept 28, 9:00 PM', 'film_id' => film1.id, 'total_tickets' => 30})
 screening5 = Screening.new({'start_time' => '2019 Sept 28, 2:00 PM', 'film_id' => film2.id, 'total_tickets' => 20})
 screening6 = Screening.new({'start_time' => '2019 Sept 28, 4:00 PM', 'film_id' => film2.id, 'total_tickets' => 20})
+screening6 = Screening.new({'start_time' => '2019-09-28 16:00:00', 'film_id' => film2.id, 'total_tickets' => 20})
 
 screening1.save
 screening2.save
@@ -102,11 +103,18 @@ ticket9.sell
 ticket10.sell
 ticket11.sell
 
-customer2.number_by_customer
-customer3.films_by_customer
+# customer2.number_by_customer
+# customer3.films_by_customer
 
-Screening.most_popular_screening_by_film(film2)
-Screening.screenings_table
+# Screening.most_popular_screening_by_film(film2)
+most_popular_screening = Screening.most_popular_screening_by_film(film2)
+most_popular_screening.each { |scr| puts (scr)}
+
+films_and_screenings = Screening.films_and_screenings
+films_and_screenings.each { |screening| puts screening}
+
+
+
 Ticket.number_by_screening(screening1)
 Ticket.number_by_film(film2)
 

@@ -120,11 +120,4 @@ class Ticket
   # end
 
 
-
-#find most popular screening for particular film
-#find total tickets sold for screenings where films
-  def method_name
-
-  end
-
 end
