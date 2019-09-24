@@ -20,6 +20,12 @@ class Film
     @id = new_film['id'].to_i
   end
 
+  def Film.all
+    sql = 'SELECT * FROM films'
+    film_hashes = SqlRunner.run( sql )
+    return film_hashes.map { |film| Film.new(film)  }
+  end
+
   def Film.delete_all
     sql = 'DELETE FROM films'
     SqlRunner.run( sql )
@@ -40,15 +46,15 @@ class Film
     SqlRunner.run( sql, values )
   end
 
-  def find_by_id
-    sql = "SELECT title FROM films
+  def Film.find_by_id(film_id)
+    sql = "SELECT * FROM films
           WHERE id = $1"
-    values = [ @id ]
+    values = [ film_id ]
     film = SqlRunner.run( sql, values ).first
-    return film
+    return Film.new(film)
   end
 
-  
+
 
   # def all_screenings_by_film_id
   #   sql = 'SELECT title, start_time FROM films, screenings

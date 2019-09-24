@@ -1,0 +1,32 @@
+body {
+  background-color: #485685;
+  font-family: Raleway, sans-serif;
+  color: #ffffff;
+  font-size: 4rem;
+  margin-left: 20px;
+}
+
+ul {
+  margin: 0 auto;
+  width: 50%;
+  padding-top: 150px;
+}
+
+li {
+  border-bottom: 1px solid #FF9EB2;
+  list-style: none;
+  padding-top: 20px;
+}
+
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+hr {
+  border: 1px solid #FF9EB2;
+}
+
+.back-link {
+  color: #E2A5BA;
+}

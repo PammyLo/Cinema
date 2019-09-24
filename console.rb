@@ -29,7 +29,7 @@ customer2.find_by_id
 customer1.find_funds
 
 
-film1 = Film.new({'title' => 'Star_Wars', 'price' => 10})
+film1 = Film.new({'title' => 'Star Wars', 'price' => 10})
 film2 = Film.new({'title' => 'Frozen', 'price' => 8})
 film3 = Film.new({'title' => 'Moonlight', 'price' => 10})
 film4 = Film.new({'title' => 'Mama Mia!', 'price' => 8})
